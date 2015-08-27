@@ -8,36 +8,36 @@
 
 import UIKit
 
-class CreateMemeViewController: UIViewController {
+class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        saveButton.enabled = (imageView.image != nil) && ((topTextField.text != nil) || (bottomTextField.text != nil))
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    // MARK: Top Toolbar
     
-    // MARK: Save meme
+    @IBAction func goBack(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func saveMeme(sender: UIBarButtonItem) {
+    }
     
     func save() {
         //Create the meme
@@ -47,6 +47,22 @@ class CreateMemeViewController: UIViewController {
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
 //        appDelegate.memes.append(meme)
+    }
+    
+    // MARK: Bottom Toolbar
+    
+    @IBAction func goToCamera(sender: UIBarButtonItem) {
+        let controller = UIImagePickerController()
+        controller.sourceType = UIImagePickerControllerSourceType.Camera
+        controller.delegate = self
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func goToPhotoAlbum(sender: UIBarButtonItem) {
+        let controller = UIImagePickerController()
+        controller.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        controller.delegate = self
+        self.presentViewController(controller, animated: true, completion: nil)
     }
 
 }

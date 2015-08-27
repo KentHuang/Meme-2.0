@@ -195,14 +195,31 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kL6-9z-oO8">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="mGt-v4-bfm"/>
-                                    <barButtonItem title="Item" id="PZV-mC-4Rg"/>
+                                    <barButtonItem title=" Back" id="UqU-x0-XRJ">
+                                        <connections>
+                                            <action selector="goBack:" destination="K3m-kY-rBG" id="aiM-a2-GUW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Save" id="mGt-v4-bfm">
+                                        <connections>
+                                            <action selector="saveMeme:" destination="K3m-kY-rBG" id="y7e-r6-sJm"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-XO-ZAj">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="JmD-EV-NIN"/>
+                                    <barButtonItem title="Camera" id="JmD-EV-NIN">
+                                        <connections>
+                                            <action selector="goToCamera:" destination="K3m-kY-rBG" id="mwm-8E-iuy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Album" id="9Ub-rk-ccT">
+                                        <connections>
+                                            <action selector="goToPhotoAlbum:" destination="K3m-kY-rBG" id="Eps-A4-uek"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-Jq-sdb">
@@ -238,7 +255,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="Olc-qA-CyX" id="RrT-QY-Tu1"/>
+                        <outlet property="cameraButton" destination="JmD-EV-NIN" id="mOA-lh-zgE"/>
                         <outlet property="imageView" destination="6nr-5l-hqY" id="1mN-Oa-Td9"/>
+                        <outlet property="saveButton" destination="mGt-v4-bfm" id="6Hp-oj-H05"/>
+                        <outlet property="topTextField" destination="uvz-Jq-sdb" id="KR6-lq-RGv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCY-yD-Rfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
